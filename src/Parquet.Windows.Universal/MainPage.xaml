@@ -5,9 +5,12 @@
     xmlns:local="using:Parquet.Windows.Universal"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syncfusion="using:Syncfusion.UI.Xaml.Grid"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <syncfusion:SfDataGrid x:Name="dataGrid"
+                               AutoGenerateColumns="true"
+                               ItemsSource="{Binding Orders}"/>
     </Grid>
 </Page>
