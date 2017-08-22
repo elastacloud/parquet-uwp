@@ -4,8 +4,14 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
+using Parquet.Data;
+using Parquet.Windows.Universal.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.Storage.Pickers;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -26,6 +32,13 @@ namespace Parquet.Windows.Universal
       public MainPage()
       {
          this.InitializeComponent();
+      }
+
+      private async void OpenFileButton_Click(object sender, RoutedEventArgs e)
+      {
+         DataSet ds = await ParquetUniversal.OpenFromFilePickerAsync();
+
+         TabularGrid.Display(ds);
       }
    }
 }
