@@ -26,7 +26,8 @@ namespace Parquet.Windows.Universal.Core
          {
             using (Stream stream = uwpStream.AsStreamForRead())
             {
-               return ParquetReader.Read(stream);
+               return ParquetReader.Read(stream,
+                  new ParquetOptions { TreatByteArrayAsString = true });
             }
          }
 

@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Parquet.Data;
+using Parquet.Windows.Universal.Model;
+using Syncfusion.Data;
+using Syncfusion.UI.Xaml.Grid;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -27,7 +30,28 @@ namespace Parquet.Windows.Universal.Controls
 
       public void Display(DataSet ds)
       {
-         DataGrid.ItemsSource = ds;
+         SfGrid.Columns.Clear();
+
+         for(int i = 0; i < ds.Schema.Length; i++)
+         {
+            SchemaElement se = ds.Schema.Elements[i];
+
+            SfGrid.Columns.Add(new GridTextColumn()
+            {
+               MappingName = $"[{i}]",
+               HeaderText = se.Name,
+               AllowFiltering = true,
+               AllowFocus = true,
+               AllowResizing = true,
+               AllowSorting = true,
+               FilterBehavior = FilterBehavior.StringTyped
+            });
+         }
+
+         SfGrid.ItemsSource = ds.Select(r => new TableRowView(r));
+         
+
+         //DataGrid.ItemsSource = ds;
       }
    }
 }

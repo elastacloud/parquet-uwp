@@ -102,6 +102,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\TableRowView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -140,6 +141,9 @@
     </PackageReference>
     <PackageReference Include="Parquet.Net">
       <Version>1.2.0-alpha-133</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.SfGrid.UWP46">
+      <Version>15.3.0.26</Version>
     </PackageReference>
     <PackageReference Include="System.ObjectModel">
       <Version>4.3.0</Version>
