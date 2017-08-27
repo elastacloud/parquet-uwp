@@ -95,13 +95,21 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\StatisticsViewControl.xaml.cs">
+      <DependentUpon>StatisticsViewControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TabControl.xaml.cs">
+      <DependentUpon>TabControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\TabularDataGrid.xaml.cs">
       <DependentUpon>TabularDataGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="Core\ParquetUniversal.cs" />
+    <Compile Include="IParquetDisplay.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\ColumnStatisticsView.cs" />
     <Compile Include="Model\TableRowView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -126,6 +134,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\StatisticsViewControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TabControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\TabularDataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -136,6 +152,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Dataframe.Utils">
+      <Version>0.0.0.2</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>5.4.0</Version>
     </PackageReference>
@@ -143,6 +162,12 @@
       <Version>1.2.0-alpha-133</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.SfGrid.UWP46">
+      <Version>15.3.0.26</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.SfMenu.UWP46">
+      <Version>15.3.0.26</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.SfTabControl.UWP46">
       <Version>15.3.0.26</Version>
     </PackageReference>
     <PackageReference Include="System.ObjectModel">

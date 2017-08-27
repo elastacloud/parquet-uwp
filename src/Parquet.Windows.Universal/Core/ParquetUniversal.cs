@@ -15,9 +15,11 @@ namespace Parquet.Windows.Universal.Core
    {
       public static async Task<DataSet> OpenFromFilePickerAsync()
       {
-         var picker = new FileOpenPicker();
-         picker.ViewMode = PickerViewMode.List;
-         picker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+         var picker = new FileOpenPicker
+         {
+            ViewMode = PickerViewMode.List,
+            SuggestedStartLocation = PickerLocationId.DocumentsLibrary
+         };
          picker.FileTypeFilter.Add(".parquet");
 
          StorageFile file = await picker.PickSingleFileAsync();

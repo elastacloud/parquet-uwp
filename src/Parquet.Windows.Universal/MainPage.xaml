@@ -6,16 +6,23 @@
     xmlns:localControls="using:Parquet.Windows.Universal.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    xmlns:navigation="using:Syncfusion.UI.Xaml.Controls.Navigation"
+    mc:Ignorable="d"
+    >
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        
-        <Button x:Name="OpenFileButton" Content="Open file..." Click="OpenFileButton_Click"/>
 
-        <localControls:TabularDataGrid Grid.Row="1" x:Name="TabularGrid"/>
+        <navigation:SfMenu x:Name="Menu" >
+            <navigation:SfMenuItem Header="File" >
+                <navigation:SfMenuItem Header="Open" Click="OpenFileButton_Click"/>
+            </navigation:SfMenuItem>
+        </navigation:SfMenu>
+                
+        <localControls:TabControl Grid.Row="1" x:Name="TabControlInstance" />
     </Grid>
 </Page>
+

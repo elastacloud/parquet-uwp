@@ -21,7 +21,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Parquet.Windows.Universal.Controls
 {
-   public sealed partial class TabularDataGrid : UserControl
+   public sealed partial class TabularDataGrid : UserControl, IParquetDisplay
    {
       public TabularDataGrid()
       {

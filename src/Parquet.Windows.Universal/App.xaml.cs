@@ -7,6 +7,9 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Foundation.Metadata;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -32,18 +35,43 @@ namespace Parquet.Windows.Universal
             this.Suspending += OnSuspending;
         }
 
-        /// <summary>
-        /// Invoked when the application is launched normally by the end user.  Other entry points
-        /// will be used such as when the application is launched to open a specific file.
-        /// </summary>
-        /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+       public SolidColorBrush GetSolidColorBrush(string hex)
+       {
+          hex = hex.Replace("#", string.Empty);
+          byte a = (byte)(Convert.ToUInt32(hex.Substring(0, 2), 16));
+          byte r = (byte)(Convert.ToUInt32(hex.Substring(2, 2), 16));
+          byte g = (byte)(Convert.ToUInt32(hex.Substring(4, 2), 16));
+          byte b = (byte)(Convert.ToUInt32(hex.Substring(6, 2), 16));
+          SolidColorBrush myBrush = new SolidColorBrush(Color.FromArgb(a, r, g, b));
+          return myBrush;
+       }
+
+      /// <summary>
+      /// Invoked when the application is launched normally by the end user.  Other entry points
+      /// will be used such as when the application is launched to open a specific file.
+      /// </summary>
+      /// <param name="e">Details about the launch request and process.</param>
+      protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
 
-            // Do not repeat app initialization when the Window already has content,
-            // just ensure that the window is active
-            if (rootFrame == null)
+           if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.ApplicationView"))
+           {
+              ApplicationView.GetForCurrentView().Title = "Parquet Data Science Studio";
+              var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+              if (titleBar != null)
+              {
+                 titleBar.ButtonBackgroundColor = GetSolidColorBrush("#FFCD3927").Color;
+                 titleBar.ButtonForegroundColor = Colors.White;
+                 titleBar.BackgroundColor = GetSolidColorBrush("#FFCD3927").Color;
+                 titleBar.ForegroundColor = Colors.White;
+              }
+           }
+
+
+         // Do not repeat app initialization when the Window already has content,
+         // just ensure that the window is active
+         if (rootFrame == null)
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();

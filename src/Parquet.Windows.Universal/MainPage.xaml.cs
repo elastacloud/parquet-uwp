@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Parquet.Windows.Universal.Controls;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -38,7 +39,7 @@ namespace Parquet.Windows.Universal
       {
          DataSet ds = await ParquetUniversal.OpenFromFilePickerAsync();
 
-         TabularGrid.Display(ds);
+         TabControlInstance.SetDataset(ds);
       }
    }
 }

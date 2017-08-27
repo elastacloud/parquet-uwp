@@ -16,13 +16,6 @@ namespace Parquet.Windows.Universal.Model
          this._parquetRow = parquetRow;
       }
 
-      public object this[int i]
-      {
-         get
-         {
-            return _parquetRow[i];
-         }
-      }
-
+      public object this[int i] => _parquetRow[i];
    }
 }
