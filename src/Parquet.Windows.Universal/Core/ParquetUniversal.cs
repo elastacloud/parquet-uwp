@@ -28,8 +28,13 @@ namespace Parquet.Windows.Universal.Core
          {
             using (Stream stream = uwpStream.AsStreamForRead())
             {
+               var readerOptions = new ReaderOptions()
+               {
+                  Count = new ParquetUwpFunctions().SampleSize,
+                  Offset = 0
+               };
                return ParquetReader.Read(stream,
-                  new ParquetOptions { TreatByteArrayAsString = true });
+                  new ParquetOptions { TreatByteArrayAsString = true }, readerOptions);
             }
          }
 

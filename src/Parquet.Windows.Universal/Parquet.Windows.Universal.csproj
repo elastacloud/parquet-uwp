@@ -105,6 +105,7 @@
       <DependentUpon>TabularDataGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="Core\ParquetUniversal.cs" />
+    <Compile Include="Core\ParquetUwpFunctions.cs" />
     <Compile Include="IParquetDisplay.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -172,6 +173,9 @@
     </PackageReference>
     <PackageReference Include="System.ObjectModel">
       <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms">
+      <Version>2.3.4.247</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

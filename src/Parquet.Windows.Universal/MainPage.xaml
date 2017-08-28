@@ -19,9 +19,10 @@
         <navigation:SfMenu x:Name="Menu" >
             <navigation:SfMenuItem Header="File" >
                 <navigation:SfMenuItem Header="Open" Click="OpenFileButton_Click"/>
+                <navigation:SfMenuItem Header="Settings" Click="SettingsButton_Click"/>
             </navigation:SfMenuItem>
         </navigation:SfMenu>
-                
+
         <localControls:TabControl Grid.Row="1" x:Name="TabControlInstance" />
     </Grid>
 </Page>

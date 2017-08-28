@@ -49,9 +49,7 @@ namespace Parquet.Windows.Universal.Controls
          }
 
          SfGrid.ItemsSource = ds.Select(r => new TableRowView(r));
-         
-
-         //DataGrid.ItemsSource = ds;
+         SfGrid.Columns.RemoveAt(SfGrid.Columns.Count - 1);
       }
    }
 }
