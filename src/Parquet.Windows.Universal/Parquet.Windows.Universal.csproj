@@ -162,6 +162,9 @@
     <PackageReference Include="Parquet.Net">
       <Version>1.2.0-alpha-133</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.SfBusyIndicator.UWP46">
+      <Version>15.3.0.26</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.SfGrid.UWP46">
       <Version>15.3.0.26</Version>
     </PackageReference>
