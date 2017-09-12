@@ -8,12 +8,21 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <navigation:SfTabControl x:Name="TabControlItems" TabScrollButtonVisibility="Visible" ItemsSource="{Binding TabControlItems}" DisplayMemberPath="Name" SelectedIndex="0">
-        <navigation:SfTabItem Name="DataGridTab" Header="Parquet Data">
-            <local:TabularDataGrid Grid.Row="1" x:Name="TabularDataGrid"/>
-        </navigation:SfTabItem>
-        <navigation:SfTabItem Name="StatisticsTab" Header="Summary Statistics" >
-            <local:StatisticsViewControl Grid.Row="2" x:Name="StatisticsViewControl"/>
-        </navigation:SfTabItem>    
-    </navigation:SfTabControl>
+    <Grid>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical" x:Name="EmptyPanel">
+            <TextBlock Text="drag file here or " Height="30" VerticalAlignment="Center"/>
+            <Button x:Name="OpenFileButton" Click="OpenFileButton_Click" Content="open from disk"/>
+        </StackPanel>
+
+        <navigation:SfTabControl x:Name="TabControlItems" TabScrollButtonVisibility="Visible" ItemsSource="{Binding TabControlItems}" DisplayMemberPath="Name" SelectedIndex="0">
+            <navigation:SfTabItem Name="DataGridTab" Header="Parquet Data">
+                <local:TabularDataGrid Grid.Row="1" x:Name="TabularDataGrid"/>
+            </navigation:SfTabItem>
+            <navigation:SfTabItem Name="StatisticsTab" Header="Summary Statistics" >
+                <local:StatisticsViewControl Grid.Row="2" x:Name="StatisticsViewControl"/>
+            </navigation:SfTabItem>
+        </navigation:SfTabControl>
+    </Grid>
+
 </UserControl>

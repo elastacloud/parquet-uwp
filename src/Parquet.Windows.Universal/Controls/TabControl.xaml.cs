@@ -13,25 +13,42 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Parquet.Data;
+using Parquet.Windows.Universal.Core;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Parquet.Windows.Universal.Controls
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class TabControl : UserControl
-    {
-        public TabControl()
-        {
-            this.InitializeComponent();
-        }
+   /// <summary>
+   /// An empty page that can be used on its own or navigated to within a Frame.
+   /// </summary>
+   public sealed partial class TabControl : UserControl
+   {
+      public TabControl()
+      {
+         this.InitializeComponent();
 
-       public void SetDataset(DataSet ds)
-       {
-          TabularDataGrid.Display(ds);
-          StatisticsViewControl.Display(ds);
-       }
-    }
+         TabControlItems.Visibility = Visibility.Collapsed;
+         EmptyPanel.Visibility = Visibility.Visible;
+      }
+
+      public void SetDataset(DataSet ds)
+      {
+         TabularDataGrid.Display(ds);
+         StatisticsViewControl.Display(ds);
+      }
+
+      private async void OpenFileButton_Click(object sender, RoutedEventArgs e)
+      {
+         DataSet ds = await ParquetUniversal.OpenFromFilePickerAsync();
+
+         if (ds != null)
+         {
+            TabControlItems.Visibility = Visibility.Visible;
+            EmptyPanel.Visibility = Visibility.Collapsed;
+
+            SetDataset(ds);
+         }
+      }
+   }
 }

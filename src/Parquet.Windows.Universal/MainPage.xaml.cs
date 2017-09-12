@@ -23,7 +23,6 @@ namespace Parquet.Windows.Universal
       {
          DataSet ds = await ParquetUniversal.OpenFromFilePickerAsync();
 
-
          TabControlInstance.SetDataset(ds);
       }
 

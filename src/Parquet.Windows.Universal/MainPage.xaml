@@ -19,7 +19,6 @@
 
         <navigation:SfMenu x:Name="Menu" >
             <navigation:SfMenuItem Header="File" >
-                <navigation:SfMenuItem Header="Open" Click="OpenFileButton_Click"/>
                 <navigation:SfMenuItem Header="Settings" Click="SettingsButton_Click"/>
             </navigation:SfMenuItem>
             <TextBlock Height="100" TextWrapping="Wrap" Text="---- Rows" Width="100"/>
