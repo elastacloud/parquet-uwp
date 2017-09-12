@@ -6,10 +6,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:navigation="using:Syncfusion.UI.Xaml.Controls.Navigation"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    AllowDrop="True" DragOver="EmptyPanel_DragOver" Drop="UserControl_Drop">
 
     <Grid>
-
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical" x:Name="EmptyPanel">
             <TextBlock Text="drag file here or " Height="30" VerticalAlignment="Center"/>
             <Button x:Name="OpenFileButton" Click="OpenFileButton_Click" Content="open from disk"/>

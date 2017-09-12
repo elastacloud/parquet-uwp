@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Parquet.Data;
+using Parquet.Windows.Universal.Controls;
 using Parquet.Windows.Universal.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -17,13 +18,6 @@ namespace Parquet.Windows.Universal
       public MainPage()
       {
          this.InitializeComponent();
-      }
-
-      private async void OpenFileButton_Click(object sender, RoutedEventArgs e)
-      {
-         DataSet ds = await ParquetUniversal.OpenFromFilePickerAsync();
-
-         TabControlInstance.SetDataset(ds);
       }
 
       private async void SettingsButton_Click(object sender, RoutedEventArgs e)

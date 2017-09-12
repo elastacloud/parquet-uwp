@@ -7,6 +7,7 @@ using Parquet.Data;
 using Parquet.Windows.Universal.Model;
 using Syncfusion.Data;
 using Syncfusion.UI.Xaml.Grid;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;

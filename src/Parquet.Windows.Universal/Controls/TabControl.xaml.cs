@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Parquet.Data;
 using Parquet.Windows.Universal.Core;
+using Windows.ApplicationModel.DataTransfer;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -34,6 +35,11 @@ namespace Parquet.Windows.Universal.Controls
 
       public void SetDataset(DataSet ds)
       {
+         if (ds == null) return;
+
+         TabControlItems.Visibility = Visibility.Visible;
+         EmptyPanel.Visibility = Visibility.Collapsed;
+
          TabularDataGrid.Display(ds);
          StatisticsViewControl.Display(ds);
       }
@@ -41,14 +47,18 @@ namespace Parquet.Windows.Universal.Controls
       private async void OpenFileButton_Click(object sender, RoutedEventArgs e)
       {
          DataSet ds = await ParquetUniversal.OpenFromFilePickerAsync();
+         SetDataset(ds);
+      }
 
-         if (ds != null)
-         {
-            TabControlItems.Visibility = Visibility.Visible;
-            EmptyPanel.Visibility = Visibility.Collapsed;
+      private void EmptyPanel_DragOver(object sender, DragEventArgs e)
+      {
+         e.AcceptedOperation = DataPackageOperation.Copy;
+      }
 
-            SetDataset(ds);
-         }
+      private async void UserControl_Drop(object sender, DragEventArgs e)
+      {
+         DataSet ds = await ParquetUniversal.OpenFromDragDropAsync(e);
+         SetDataset(ds);
       }
    }
 }
