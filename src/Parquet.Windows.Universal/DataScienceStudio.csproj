@@ -7,8 +7,8 @@
     <ProjectGuid>{CF4F17E5-97B2-43CC-9F64-0583D9792389}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Parquet.Windows.Universal</RootNamespace>
-    <AssemblyName>Parquet.Windows.Universal</AssemblyName>
+    <RootNamespace>DataScienceStudio</RootNamespace>
+    <AssemblyName>DataScienceStudio</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.15063.0</TargetPlatformVersion>

@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.10
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parquet.Windows.Universal", "Parquet.Windows.Universal\Parquet.Windows.Universal.csproj", "{CF4F17E5-97B2-43CC-9F64-0583D9792389}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataScienceStudio", "Parquet.Windows.Universal\DataScienceStudio.csproj", "{CF4F17E5-97B2-43CC-9F64-0583D9792389}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B04F7F8E-A081-4A49-94ED-F9460F047FF9}"
 	ProjectSection(SolutionItems) = preProject
