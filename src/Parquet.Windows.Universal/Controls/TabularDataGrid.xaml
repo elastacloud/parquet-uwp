@@ -9,8 +9,19 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
+    <UserControl.Resources>
+        <Style x:Key="HeaderStyle" TargetType="syncfusion:GridHeaderCellControl">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="syncfusion:HeaderRowControl">
+            <Setter Property="Background" Value="Bisque"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+    </UserControl.Resources>
 
     <Grid>
-        <syncfusion:SfDataGrid x:Name="SfGrid" FontSize="12" BorderBrush="#FFD9D9D9" CurrentCellBorderBrush="#FF411111" RequestedTheme="Light"/>
+        <syncfusion:SfDataGrid x:Name="SfGrid" FontSize="12" BorderBrush="#FFD9D9D9" CurrentCellBorderBrush="#FF411111" RequestedTheme="Light"
+                               HeaderStyle="{StaticResource HeaderStyle}" AutoGenerateColumns="False"/>
     </Grid>
 </UserControl>

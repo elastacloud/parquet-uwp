@@ -69,7 +69,7 @@ namespace Parquet.Windows.Universal.Controls
 
          result.MappingName = $"[{i}]";
          result.HeaderText = se.Name;
-         result.AllowFiltering = true;
+         result.AllowFiltering = false;
          result.AllowFocus = true;
          result.AllowResizing = true;
          result.AllowSorting = true;
