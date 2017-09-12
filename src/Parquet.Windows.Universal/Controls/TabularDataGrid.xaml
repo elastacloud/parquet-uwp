@@ -11,6 +11,6 @@
     d:DesignWidth="400">
 
     <Grid>
-        <syncfusion:SfDataGrid x:Name="SfGrid" FontSize="12"/>
+        <syncfusion:SfDataGrid x:Name="SfGrid" FontSize="12" BorderBrush="#FFD9D9D9" CurrentCellBorderBrush="#FF411111" RequestedTheme="Light"/>
     </Grid>
 </UserControl>

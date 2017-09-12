@@ -34,22 +34,51 @@ namespace Parquet.Windows.Universal.Controls
 
          for(int i = 0; i < ds.Schema.Length; i++)
          {
-            SchemaElement se = ds.Schema.Elements[i];
-
-            SfGrid.Columns.Add(new GridTextColumn()
-            {
-               MappingName = $"[{i}]",
-               HeaderText = se.Name,
-               AllowFiltering = true,
-               AllowFocus = true,
-               AllowResizing = true,
-               AllowSorting = true,
-               FilterBehavior = FilterBehavior.StringTyped
-            });
+            SfGrid.Columns.Add(CreateSfColumn(ds.Schema[i], i));
          }
 
          SfGrid.ItemsSource = ds.Select(r => new TableRowView(r));
          SfGrid.Columns.RemoveAt(SfGrid.Columns.Count - 1);
+      }
+
+      private GridColumn CreateSfColumn(SchemaElement se, int i)
+      {
+         GridColumn result;
+
+         if(se.ElementType == typeof(int) ||
+            se.ElementType == typeof(float) ||
+            se.ElementType == typeof(double) ||
+            se.ElementType == typeof(decimal))
+         {
+            result = new GridNumericColumn();
+         }
+         else if(se.ElementType == typeof(DateTime) ||
+            se.ElementType == typeof(DateTimeOffset))
+         {
+            result = new GridDateTimeColumn();
+         }
+         else if(se.ElementType == typeof(bool))
+         {
+            result = new GridCheckBoxColumn();
+         }
+         else
+         {
+            result = new GridTextColumn();
+         }
+
+         result.MappingName = $"[{i}]";
+         result.HeaderText = se.Name;
+         result.AllowFiltering = true;
+         result.AllowFocus = true;
+         result.AllowResizing = true;
+         result.AllowSorting = true;
+         result.FilterBehavior = FilterBehavior.StronglyTyped;
+         result.AllowEditing = true;
+
+         result.ShowToolTip = true;
+         result.ShowHeaderToolTip = true;
+
+         return result;
       }
    }
 }
