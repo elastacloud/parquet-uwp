@@ -24,9 +24,13 @@ namespace Parquet.Windows.Universal.Controls
 {
    public sealed partial class TabularDataGrid : UserControl, IParquetDisplay
    {
+      private readonly DataTemplate _headerTooltipTemplate;
+
       public TabularDataGrid()
       {
          this.InitializeComponent();
+
+         _headerTooltipTemplate = Application.Current.Resources["HeaderTooltipTemplate"] as DataTemplate;
       }
 
       public void Display(DataSet ds)
@@ -76,8 +80,10 @@ namespace Parquet.Windows.Universal.Controls
          result.FilterBehavior = FilterBehavior.StronglyTyped;
          result.AllowEditing = true;
 
-         result.ShowToolTip = true;
+         result.ShowToolTip = false;
+
          result.ShowHeaderToolTip = true;
+         result.HeaderToolTipTemplate = _headerTooltipTemplate;
 
          return result;
       }

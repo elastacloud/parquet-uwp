@@ -24,6 +24,7 @@ namespace Parquet.Windows.Universal
          HamburgerMenuControl.ItemsSource = MenuItem.GetMainItems();
          HamburgerMenuControl.OptionsItemsSource = MenuItem.GetOptionsItems();
 
+         ContentFrame.Navigate(typeof(WranglePage));
       }
 
       private async void SettingsButton_Click(object sender, RoutedEventArgs e)
