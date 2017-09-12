@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using DataScienceStudio.Pages;
 using Parquet.Data;
 using Parquet.Windows.Universal.Controls;
 using Parquet.Windows.Universal.Core;
@@ -18,6 +20,10 @@ namespace Parquet.Windows.Universal
       public MainPage()
       {
          this.InitializeComponent();
+
+         HamburgerMenuControl.ItemsSource = MenuItem.GetMainItems();
+         HamburgerMenuControl.OptionsItemsSource = MenuItem.GetOptionsItems();
+
       }
 
       private async void SettingsButton_Click(object sender, RoutedEventArgs e)
@@ -64,6 +70,12 @@ namespace Parquet.Windows.Universal
          new SampleLevel(9000),
          new SampleLevel(10000)
       };
+
+      private void HamburgerMenuControl_ItemClick(object sender, ItemClickEventArgs e)
+      {
+         var menuItem = e.ClickedItem as MenuItem;
+         ContentFrame.Navigate(menuItem.PageType);
+      }
    }
 
    public class SampleLevel
@@ -74,5 +86,26 @@ namespace Parquet.Windows.Universal
       }
 
       public int Level { get; set; }
+   }
+
+   public class MenuItem
+   {
+      public Symbol Icon { get; set; }
+      public string Name { get; set; }
+      public Type PageType { get; set; }
+
+      public static List<MenuItem> GetMainItems()
+      {
+         var items = new List<MenuItem>();
+         items.Add(new MenuItem { Icon = Symbol.Accept, Name = "Wrangle", PageType = typeof(WranglePage) });
+         return items;
+      }
+
+      public static List<MenuItem> GetOptionsItems()
+      {
+         var items = new List<MenuItem>();
+         items.Add(new MenuItem() { Icon = Symbol.Setting, Name = "Settings", PageType = typeof(SettingsPage) });
+         return items;
+      }
    }
 }

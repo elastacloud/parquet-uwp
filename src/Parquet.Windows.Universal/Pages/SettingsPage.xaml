@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="DataScienceStudio.Pages.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DataScienceStudio.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Margin="10">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ScrollViewer>
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Sample Size" Style="{ThemeResource BaseTextBlockStyle}"/>
+                <ComboBox SelectedIndex="0" >
+                    <ComboBoxItem Content="1000"/>
+                    <ComboBoxItem Content="2000"/>
+                    <ComboBoxItem Content="3000"/>
+                    <ComboBoxItem Content="4000"/>
+                    <ComboBoxItem Content="5000"/>
+                    <ComboBoxItem Content="6000"/>
+                    <ComboBoxItem Content="7000"/>
+                    <ComboBoxItem Content="8000"/>
+                    <ComboBoxItem Content="9000"/>
+                </ComboBox>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

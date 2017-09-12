@@ -8,24 +8,32 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:navigation="using:Syncfusion.UI.Xaml.Controls.Navigation"
     xmlns:notification="using:Syncfusion.UI.Xaml.Controls.Notification"
-    mc:Ignorable="d"
-    >
+    xmlns:uwpToolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <DataTemplate x:Key="HamburgerItemTemplate" x:DataType="local:MenuItem">
+            <Grid Width="240" Height="48">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <SymbolIcon Grid.Column="0" Symbol="{x:Bind Icon, Mode=OneWay}" Foreground="White" />
+                <TextBlock Grid.Column="1" Text="{x:Bind Name, Mode=OneWay}" FontSize="16" VerticalAlignment="Center" Foreground="White" />
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-
-        <navigation:SfMenu x:Name="Menu" >
-            <navigation:SfMenuItem Header="File" >
-                <navigation:SfMenuItem Header="Settings" Click="SettingsButton_Click"/>
-            </navigation:SfMenuItem>
-            <TextBlock Height="100" TextWrapping="Wrap" Text="---- Rows" Width="100"/>
-        </navigation:SfMenu>
-
-        <localControls:TabControl Grid.Row="1" x:Name="TabControlInstance" />
-        <!--<notification:SfBusyIndicator Grid.Row="1" x:Name="BusyIndicator" AnimationType="Gear" />-->
+        <uwpToolkit:HamburgerMenu x:Name="HamburgerMenuControl"
+                                  PaneBackground="Black"
+                                  Foreground="White"
+                                  ItemTemplate="{StaticResource HamburgerItemTemplate}"
+                                  OptionsItemTemplate="{StaticResource HamburgerItemTemplate}"
+                                  ItemClick="HamburgerMenuControl_ItemClick"
+                                  OptionsItemClick="HamburgerMenuControl_ItemClick">
+            <Frame x:Name="ContentFrame" Foreground="Black"/>
+        </uwpToolkit:HamburgerMenu>
     </Grid>
 </Page>
 
