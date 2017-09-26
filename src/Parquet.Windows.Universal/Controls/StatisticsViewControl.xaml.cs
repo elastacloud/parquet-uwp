@@ -17,6 +17,8 @@ using Parquet.Windows.Universal.Model;
 using Syncfusion.Data;
 using Syncfusion.UI.Xaml.Grid;
 using System.Collections;
+using Frame = DataFrame.Math.Data.Frame;
+using DataFrame.Math.Data;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -29,12 +31,12 @@ namespace Parquet.Windows.Universal.Controls
          this.InitializeComponent();
       }
 
-      public void Display(DataSet ds)
+      public void Display(Frame f)
       {
          var columnValues = new List<ColumnStatisticsView>();
-         for (int i = 0; i < ds.ColumnCount; i++)
+         for (int i = 0; i < f.Series.Count; i++)
          {
-            List<double> doubles = GetColumnData(ds, i);
+            List<double> doubles = GetColumnData(f, i, out int nullCount);
 
             if(doubles.Count == 0)
             {
@@ -44,7 +46,7 @@ namespace Parquet.Windows.Universal.Controls
 
             columnValues.Add(new ColumnStatisticsView()
             {
-               ColumnName = ds.Schema.ColumnNames[i],
+               ColumnName = f[i].Name,
                DistinctValuesCount = doubles.Distinct().Count(),
                Mean = doubles.Mean(),
                Sum = doubles.Sum(),
@@ -53,7 +55,7 @@ namespace Parquet.Windows.Universal.Controls
                Kurtosis = doubles.Kurtosis(),
                Skewness = doubles.Skewness(),
                Median = doubles.Median(),
-               NullCount = doubles.Count(v => v == null),
+               NullCount = nullCount,
                Quartile25 = doubles.Quartile25(),
                Quartile75 = doubles.Quartile75(),
                StandardDeviation = doubles.StandardDeviation(),
@@ -64,15 +66,22 @@ namespace Parquet.Windows.Universal.Controls
          SfGrid.ItemsSource = columnValues;
       }
 
-      private static List<double> GetColumnData(DataSet ds, int index)
+      private static List<double> GetColumnData(Frame f, int index, out int nullCount)
       {
          var result = new List<double>();
          int invalids = 0;
          int nulls = 0;
 
-         IList untypedValues = ds.GetColumn(index);
+         Series s = f[index];
 
-         foreach (object uv in untypedValues)
+         if (s.DataType == typeof(double))
+         {
+            result = (List<double>)s.Data;
+            nullCount = 0;
+            return result;
+         }
+
+         foreach (object uv in s.Data)
          {
             if (ReferenceEquals(uv, null))
             {
@@ -94,6 +103,8 @@ namespace Parquet.Windows.Universal.Controls
                invalids += 1;
             }
          }
+
+         nullCount = nulls;
 
          return result;
       }

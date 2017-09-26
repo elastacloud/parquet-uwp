@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Parquet.Data;
 
 namespace Parquet.Windows.Universal.Model
 {
    public class TableRowView
    {
-      private readonly Row _parquetRow;
+      private readonly object[] _parquetRow;
 
-      public TableRowView(Row parquetRow)
+      public TableRowView(IReadOnlyCollection<object> row)
       {
-         this._parquetRow = parquetRow;
+         this._parquetRow = row.ToArray();
       }
 
       public object this[int i] => _parquetRow[i];

@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataFrame.Formats;
+using DataFrame.Math.Data;
 using Parquet.Data;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
@@ -15,7 +17,7 @@ namespace Parquet.Windows.Universal.Core
 {
    class ParquetUniversal
    {
-      public static async Task<DataSet> OpenFromFilePickerAsync()
+      public static async Task<Frame> OpenFromFilePickerAsync()
       {
          var picker = new FileOpenPicker
          {
@@ -32,11 +34,11 @@ namespace Parquet.Windows.Universal.Core
          }
       }
 
-      public static async Task<DataSet> OpenFromDragDropAsync(DragEventArgs e)
+      public static async Task<Frame> OpenFromDragDropAsync(DragEventArgs e)
       {
          if (e.DataView.Contains(StandardDataFormats.StorageItems))
          {
-            var items = await e.DataView.GetStorageItemsAsync();
+            IReadOnlyList<IStorageItem> items = await e.DataView.GetStorageItemsAsync();
 
             if (items.Count > 0)
             {
@@ -52,7 +54,7 @@ namespace Parquet.Windows.Universal.Core
          return null;
       }
 
-      private async static Task<DataSet> OpenAsync(IRandomAccessStreamWithContentType uwpStream)
+      private async static Task<Frame> OpenAsync(IRandomAccessStreamWithContentType uwpStream)
       {
          using (Stream stream = uwpStream.AsStreamForRead())
          {
@@ -61,8 +63,8 @@ namespace Parquet.Windows.Universal.Core
                Count = new ParquetUwpFunctions().SampleSize,
                Offset = 0
             };
-            return ParquetReader.Read(stream,
-               new ParquetOptions { TreatByteArrayAsString = true }, readerOptions);
+
+            return Matrix.Read().Parquet().FromStream(stream);
          }
       }
    }
