@@ -168,10 +168,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="DataFrame.Formats">
-      <Version>1.0.2-alpha-19</Version>
+      <Version>1.0.2-alpha-20</Version>
     </PackageReference>
     <PackageReference Include="DataFrame.Math">
-      <Version>1.0.2-alpha-19</Version>
+      <Version>1.0.2-alpha-20</Version>
     </PackageReference>
     <PackageReference Include="LogMagic">
       <Version>2.5.56</Version>

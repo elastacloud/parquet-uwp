@@ -64,7 +64,7 @@ namespace Parquet.Windows.Universal.Core
                Offset = 0
             };
 
-            return Matrix.Read().Parquet().FromStream(stream);
+            return Frame.Read.Parquet(stream, new ParquetOptions { TreatByteArrayAsString = true }, new ReaderOptions { Offset = 0, Count = 100 });
          }
       }
    }
