@@ -1,0 +1,31 @@
+﻿<UserControl
+    x:Class="DataScienceStudio.Controls.Project.DataSources"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DataScienceStudio.Controls.Project"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+   <Grid>
+
+      <Grid.RowDefinitions>
+         <RowDefinition Height="Auto"/>
+         <RowDefinition/>
+      </Grid.RowDefinitions>
+      
+      <StackPanel Orientation="Horizontal">
+         <Button x:Name="AddDataSource" Width="40" Click="AddDataSource_Click">
+            <Image Source="ms-appx:///Assets/Icons/add.png" HorizontalAlignment="Left" Width="20"/>
+         </Button>
+      </StackPanel>
+
+      <ListView Grid.Row="1" MinWidth="100" MinHeight="100" x:Name="DataSourcesList" SelectionChanged="DataSourcesList_SelectionChanged">
+         
+      </ListView>
+   </Grid>
+
+
+</UserControl>

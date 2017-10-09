@@ -4,47 +4,57 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using DataFrame.Math.Data;
-using DataScienceStudio.Model;
-using Parquet.Data;
-using Parquet.Windows.Universal.Model;
-using Syncfusion.Data;
-using Syncfusion.UI.Xaml.Grid;
-using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using UC = Windows.UI.Xaml.Controls.UserControl;
+//using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Frame = DataFrame.Math.Data.Frame;
+using DataScienceStudio.Model;
+using Syncfusion.UI.Xaml.Grid;
+using Syncfusion.Data;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace Parquet.Windows.Universal.Controls
+namespace DataScienceStudio.Controls.Grid
 {
-   public sealed partial class TabularDataGrid : UserControl, IParquetDisplay
+   public sealed partial class GridView : UC
    {
+      private Frame _df;
       private readonly DataTemplate _headerTooltipTemplate;
 
-      public TabularDataGrid()
+      public GridView()
       {
          this.InitializeComponent();
 
          _headerTooltipTemplate = Application.Current.Resources["HeaderTooltipTemplate"] as DataTemplate;
       }
 
-      public void Display(Frame df)
+      public Frame DataFrame
+      {
+         get => this.DataContext as Frame;
+
+         set
+         {
+            SfGrid.DataContext = value;
+            Render(value);
+         }
+      }
+
+      private void Render(Frame df)
       {
          SfGrid.Columns.Clear();
 
          int i = 0;
-         foreach(Series s in df.Series)
+         foreach (Series s in df.Series)
          {
             SfGrid.Columns.Add(CreateSfColumn(s, i++));
          }
+
 
 
          SfGrid.ItemsSource = Enumerable
@@ -58,19 +68,19 @@ namespace Parquet.Windows.Universal.Controls
       {
          GridColumn result;
 
-         if(s.DataType == typeof(int) ||
+         if (s.DataType == typeof(int) ||
             s.DataType == typeof(float) ||
             s.DataType == typeof(double) ||
             s.DataType == typeof(decimal))
          {
             result = new GridNumericColumn();
          }
-         else if(s.DataType == typeof(DateTime) ||
+         else if (s.DataType == typeof(DateTime) ||
             s.DataType == typeof(DateTimeOffset))
          {
             result = new GridDateTimeColumn();
          }
-         else if(s.DataType == typeof(bool))
+         else if (s.DataType == typeof(bool))
          {
             result = new GridCheckBoxColumn();
          }
@@ -95,5 +105,6 @@ namespace Parquet.Windows.Universal.Controls
 
          return result;
       }
+
    }
 }

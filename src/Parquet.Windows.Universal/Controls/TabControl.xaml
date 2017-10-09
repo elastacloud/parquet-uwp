@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Parquet.Windows.Universal.Controls"
+   xmlns:localg="using:DataScienceStudio.Controls.Grid"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:navigation="using:Syncfusion.UI.Xaml.Controls.Navigation"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -17,7 +18,7 @@
 
         <navigation:SfTabControl x:Name="TabControlItems" TabScrollButtonVisibility="Visible" ItemsSource="{Binding TabControlItems}" DisplayMemberPath="Name" SelectedIndex="0">
             <navigation:SfTabItem Name="DataGridTab" Header="Parquet Data">
-                <local:TabularDataGrid Grid.Row="1" x:Name="TabularDataGrid"/>
+                <localg:GridView Grid.Row="1" x:Name="TabularDataGrid"/>
             </navigation:SfTabItem>
             <navigation:SfTabItem Name="StatisticsTab" Header="Summary Statistics" >
                 <local:StatisticsViewControl Grid.Row="2" x:Name="StatisticsViewControl"/>

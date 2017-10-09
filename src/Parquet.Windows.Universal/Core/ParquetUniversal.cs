@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataFrame.Formats;
 using DataFrame.Math.Data;
+using DataScienceStudio.Model;
 using Parquet.Data;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
@@ -17,7 +18,7 @@ namespace Parquet.Windows.Universal.Core
 {
    class ParquetUniversal
    {
-      public static async Task<Frame> OpenFromFilePickerAsync()
+      public static async Task<DataFrameView> OpenFromFilePickerAsync()
       {
          var picker = new FileOpenPicker
          {
@@ -30,11 +31,13 @@ namespace Parquet.Windows.Universal.Core
 
          using (IRandomAccessStreamWithContentType uwpStream = await file.OpenReadAsync())
          {
-            return await OpenAsync(uwpStream);
+            Frame df = await OpenAsync(uwpStream);
+
+            return new DataFrameView(df, file.Name);
          }
       }
 
-      public static async Task<Frame> OpenFromDragDropAsync(DragEventArgs e)
+      public static async Task<DataFrameView> OpenFromDragDropAsync(DragEventArgs e)
       {
          if (e.DataView.Contains(StandardDataFormats.StorageItems))
          {
@@ -46,7 +49,9 @@ namespace Parquet.Windows.Universal.Core
 
                using (IRandomAccessStreamWithContentType uwpStream = await storageFile.OpenReadAsync())
                {
-                  return await OpenAsync(uwpStream);
+                  Frame df = await OpenAsync(uwpStream);
+
+                  return new DataFrameView(df, storageFile.Name);
                }
             }
          }
