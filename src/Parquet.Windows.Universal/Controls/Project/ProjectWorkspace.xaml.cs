@@ -30,6 +30,11 @@ namespace DataScienceStudio.Controls.Project
       private void DataSources_DataFrameViewChanged(Model.DataFrameView obj)
       {
          this.DataFrame = obj.Df;
+         this.RowCount.Text = obj.Df.RowCount.ToString();
+         if (obj.Df.RowCount == 1)
+         {
+            this.RowCountLabel.Text = "row";
+         }
       }
 
       #region [ temp ]
