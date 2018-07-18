@@ -25,13 +25,10 @@ namespace DataScienceStudio.Controls.Grid
    public sealed partial class GridView : UC
    {
       private Frame _df;
-      private readonly DataTemplate _headerTooltipTemplate;
-
+      
       public GridView()
       {
          this.InitializeComponent();
-
-         _headerTooltipTemplate = Application.Current.Resources["HeaderTooltipTemplate"] as DataTemplate;
       }
 
       public Frame DataFrame
@@ -62,6 +59,7 @@ namespace DataScienceStudio.Controls.Grid
             .Select(rn => new TableRowView(df.GetRow(rn)));
 
          SfGrid.Columns.RemoveAt(SfGrid.Columns.Count - 1);
+         SfGrid.ColumnSizer = GridLengthUnitType.Auto;
       }
 
       private GridColumn CreateSfColumn(Series s, int i)
@@ -74,19 +72,23 @@ namespace DataScienceStudio.Controls.Grid
             s.DataType == typeof(decimal))
          {
             result = new GridNumericColumn();
+            result.HeaderTemplate = this.Resources["headerTemplateNum"] as DataTemplate;
          }
          else if (s.DataType == typeof(DateTime) ||
             s.DataType == typeof(DateTimeOffset))
          {
             result = new GridDateTimeColumn();
+            result.HeaderTemplate = this.Resources["headerTemplateDate"] as DataTemplate;
          }
          else if (s.DataType == typeof(bool))
          {
             result = new GridCheckBoxColumn();
+            result.HeaderTemplate = this.Resources["headerTemplateBool"] as DataTemplate;
          }
          else
          {
             result = new GridTextColumn();
+            result.HeaderTemplate = this.Resources["headerTemplateStr"] as DataTemplate;
          }
 
          result.MappingName = $"[{i}]";
@@ -97,11 +99,8 @@ namespace DataScienceStudio.Controls.Grid
          result.AllowSorting = true;
          result.FilterBehavior = FilterBehavior.StronglyTyped;
          result.AllowEditing = true;
-
          result.ShowToolTip = false;
-
          result.ShowHeaderToolTip = true;
-         result.HeaderToolTipTemplate = _headerTooltipTemplate;
 
          return result;
       }

@@ -48,7 +48,7 @@
 
       <StackPanel Name="WelcomeScreen" Padding="20" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
          <TextBlock HorizontalAlignment="Center" Text="Welcome to Elastacloud Data Science Studio" Style="{ThemeResource HeaderTextBlockStyle}"/>
-         <Image HorizontalAlignment="Center" Source="/Assets/images/eclogo2017.png" MaxHeight="500"/>
+         <Image HorizontalAlignment="Center" Source="/Assets/images/eclogo2017.png" MaxHeight="300"/>
          <TextBlock HorizontalAlignment="Center" Text="At Elastacloud we build tools that allow data people to work together and succeed, whatever their favourite toolset."/>
       </StackPanel>
       <localg:GridView x:Name="TabularDataGrid" Grid.Column="1" Grid.Row="1"/>
