@@ -65,9 +65,9 @@ namespace Parquet.Windows.Universal
             ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
             if (titleBar != null)
             {
-               titleBar.ButtonBackgroundColor = GetSolidColorBrush("#FFCD3927").Color;
+               titleBar.ButtonBackgroundColor = GetSolidColorBrush("#FF0078D7").Color;
                titleBar.ButtonForegroundColor = Colors.White;
-               titleBar.BackgroundColor = GetSolidColorBrush("#FFCD3927").Color;
+               titleBar.BackgroundColor = GetSolidColorBrush("#FF000000").Color;
                titleBar.ForegroundColor = Colors.White;
             }
          }

@@ -35,6 +35,9 @@ namespace DataScienceStudio.Controls.Project
          {
             this.RowCountLabel.Text = "row";
          }
+         this.RowCount.Visibility = Visibility.Visible;
+         this.RowCountLabel.Visibility = Visibility.Visible;
+         WelcomeScreen.Visibility = Visibility.Collapsed;
       }
 
       #region [ temp ]

@@ -15,14 +15,17 @@
       <Grid.ColumnDefinitions>
          <ColumnDefinition Width="Auto"/>
          <ColumnDefinition Width="*"/>
-         <ColumnDefinition Width="Auto"/>
+         <ColumnDefinition Width="0"/>
       </Grid.ColumnDefinitions>
       <Grid.RowDefinitions>
          <RowDefinition Height="Auto" />
          <RowDefinition Height="*"/>
-         <RowDefinition Height="Auto"/>
+         <RowDefinition Height="0"/>
       </Grid.RowDefinitions>
 
+      <StackPanel Background="{ThemeResource SystemControlBackgroundChromeMediumBrush }">
+         
+      </StackPanel>
       <Grid Background="{ThemeResource SystemControlBackgroundChromeMediumBrush }" 
                   Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
          <Grid.ColumnDefinitions>
@@ -30,19 +33,26 @@
             <ColumnDefinition/>
          </Grid.ColumnDefinitions>
          <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Loading" Name="RowCount" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Padding="10 0 5 0" />
-            <TextBlock Text="rows" Name="RowCountLabel" VerticalAlignment="Center" />
+            <TextBlock Visibility="Collapsed" Name="RowCount" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Padding="10 0 5 0" />
+            <TextBlock Visibility="Collapsed" Text="rows" Name="RowCountLabel" VerticalAlignment="Center" FontSize="16" />
          </StackPanel>
          <CommandBar  x:Name="PrimaryCommandBar" IsOpen="False" HorizontalAlignment="Right" Grid.Column="1"/>
       </Grid>
-       
-      <uwpToolkit:Expander Grid.Column="0" Grid.Row="1"  Header="Data Sources"
-                           IsExpanded="False" ExpandDirection="Right">
+
+      <StackPanel Grid.Row="1" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush }">
+      <uwpToolkit:Expander Header="Data Sources"
+                           IsExpanded="False" ExpandDirection="Right" MaxWidth="300" >
          <local:DataSources x:Name="DataSources"/>
       </uwpToolkit:Expander>
+      </StackPanel>
 
+      <StackPanel Name="WelcomeScreen" Padding="20" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+         <TextBlock HorizontalAlignment="Center" Text="Welcome to Elastacloud Data Science Studio" Style="{ThemeResource HeaderTextBlockStyle}"/>
+         <Image HorizontalAlignment="Center" Source="/Assets/images/eclogo2017.png" MaxHeight="500"/>
+         <TextBlock HorizontalAlignment="Center" Text="At Elastacloud we build tools that allow data people to work together and succeed, whatever their favourite toolset."/>
+      </StackPanel>
+      <localg:GridView x:Name="TabularDataGrid" Grid.Column="1" Grid.Row="1"/>
 
-      <localg:GridView Grid.Column="1" Grid.Row="1" x:Name="TabularDataGrid"/>
 
       <uwpToolkit:Expander x:Name="Transforms" Grid.Column="2" Grid.Row="1" Header="Transforms"
                            IsExpanded="True" ExpandDirection="Left">
