@@ -9,16 +9,18 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
-   <Grid>
+   <Grid Background="{ThemeResource SystemControlBackgroundChromeMediumBrush }">
 
       <Grid.RowDefinitions>
          <RowDefinition Height="Auto"/>
          <RowDefinition/>
       </Grid.RowDefinitions>
-      
-      <StackPanel Orientation="Horizontal">
-         <Button x:Name="AddDataSource" Width="40" Click="AddDataSource_Click">
-            <Image Source="ms-appx:///Assets/Icons/add.png" HorizontalAlignment="Left" Width="20"/>
+
+      <StackPanel Padding="10">
+         <TextBlock  Text="Loaded Files" Style="{StaticResource HeaderTextBlockStyle}"/>
+         <TextBlock Text="You have not yet loaded any files, click the Add button below to begin." Name="NotYetLoaded" Style="{StaticResource CaptionTextBlockStyle}"/>
+         <Button x:Name="AddDataSource" Width="40" Click="AddDataSource_Click" UseSystemFocusVisuals="True" HorizontalAlignment="Right">
+            <SymbolIcon Symbol="Add"/>
          </Button>
       </StackPanel>
 

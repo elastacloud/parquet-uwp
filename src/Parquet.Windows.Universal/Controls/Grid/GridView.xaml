@@ -14,15 +14,70 @@
       <Style x:Key="HeaderStyle" TargetType="syncfusion:GridHeaderCellControl">
          <Setter Property="FontWeight" Value="Bold"/>
          <Setter Property="FontSize" Value="14"/>
+         <Setter Property="Foreground" Value="Black"/>
       </Style>
       <Style TargetType="syncfusion:HeaderRowControl">
-         <Setter Property="Background" Value="Bisque"/>
-         <Setter Property="BorderThickness" Value="1"/>
+         <Setter Property="BorderThickness" Value="0 0 0 5"/>
+         <Setter Property="BorderBrush" Value="#FF0078D7"/>
       </Style>
+      <Style TargetType="syncfusion:GridCell">
+         <Setter Property="Foreground" Value="Black"/>
+         <Setter Property="BorderBrush" Value="LightGray"/>
+      </Style>
+      <DataTemplate x:Key="headerTemplateStr" x:DataType="x:String">
+         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock Text="str" FontStyle="Italic" Foreground="#FF0078D7" FontSize="12" VerticalAlignment="Center" Padding="2"/>
+            <TextBlock  
+                   Text="{ Binding }"
+                   Foreground="Black" 
+                   />
+            <Button HorizontalAlignment="Right" Visibility="Collapsed">
+               <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE174;" FontSize="10" />
+            </Button>
+         </StackPanel>
+      </DataTemplate>
+      <DataTemplate x:Key="headerTemplateNum" x:DataType="x:String">
+         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock Text="num" FontStyle="Italic" Foreground="#FF0078D7" FontSize="12" VerticalAlignment="Center" Padding="2"/>
+            <TextBlock  
+                   Text="{ Binding }"
+                   Foreground="Black" 
+                   />
+            <Button HorizontalAlignment="Right" Visibility="Collapsed">
+               <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE174;" FontSize="10" />
+            </Button>
+         </StackPanel>
+      </DataTemplate>
+      <DataTemplate x:Key="headerTemplateDate" x:DataType="x:String">
+         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock Text="date" FontStyle="Italic" Foreground="#FF0078D7" FontSize="12" VerticalAlignment="Center" Padding="2"/>
+            <TextBlock  
+                   Text="{ Binding }"
+                   Foreground="Black" 
+                   />
+            <Button HorizontalAlignment="Right" Visibility="Collapsed">
+               <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE174;" FontSize="10" />
+            </Button>
+         </StackPanel>
+      </DataTemplate>
+      <DataTemplate x:Key="headerTemplateBool" x:DataType="x:String">
+         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock Text="bool" FontStyle="Italic" Foreground="#FF0078D7" FontSize="12" VerticalAlignment="Center" Padding="2"/>
+            <TextBlock  
+                   Text="{ Binding }"
+                   Foreground="Black" 
+                   />
+            <Button HorizontalAlignment="Right" Visibility="Collapsed">
+               <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE174;" FontSize="10" />
+            </Button>
+         </StackPanel>
+      </DataTemplate>
    </UserControl.Resources>
 
 
-   <syncfusion:SfDataGrid x:Name="SfGrid" FontSize="12" BorderBrush="#FFD9D9D9" CurrentCellBorderBrush="#FF411111" RequestedTheme="Light"
-                              HeaderStyle="{StaticResource HeaderStyle}" AutoGenerateColumns="False" AllowEditing="True" AllowDeleting="True" AllowDraggingColumns="True" AllowGrouping="False" AllowResizingColumns="True" AllowSelectionOnPointerPressed="True">
+   <syncfusion:SfDataGrid x:Name="SfGrid" FontSize="12" BorderBrush="#FFF9F9F9" CurrentCellBorderBrush="#FF411111" 
+                          RequestedTheme="Light" HeaderStyle="{StaticResource HeaderStyle}" AutoGenerateColumns="False" 
+                          AllowEditing="True" AllowDeleting="True" AllowDraggingColumns="True" AllowGrouping="False" 
+                          AllowResizingColumns="True" AllowSelectionOnPointerPressed="True">
    </syncfusion:SfDataGrid>
 </UserControl>

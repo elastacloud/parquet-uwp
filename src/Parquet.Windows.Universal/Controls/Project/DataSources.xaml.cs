@@ -32,8 +32,14 @@ namespace DataScienceStudio.Controls.Project
       private async void AddDataSource_Click(object sender, RoutedEventArgs e)
       {
          DataFrameView dfv = await ParquetUniversal.OpenFromFilePickerAsync();
+         NotYetLoaded.Visibility = Visibility.Collapsed;
 
          DataSourcesList.Items.Add(dfv);
+         if (DataSourcesList.Items.Count == 1)
+         {
+            DataSourcesList.SelectedIndex = 0;
+            DataFrameViewChanged?.Invoke(DataSourcesList.SelectedItem as DataFrameView);
+         }
       }
 
       private void DataSourcesList_SelectionChanged(object sender, Windows.UI.Xaml.Controls.SelectionChangedEventArgs e)
