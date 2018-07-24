@@ -7,9 +7,9 @@ namespace DataScienceStudio.Model
    {
       private readonly object[] _parquetRow;
 
-      public TableRowView(IReadOnlyCollection<object> row)
+      public TableRowView(object[] row)
       {
-         this._parquetRow = row.ToArray();
+         this._parquetRow = row;
       }
 
       public object this[int i] => _parquetRow[i];

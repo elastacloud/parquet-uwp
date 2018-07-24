@@ -4,8 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataFrame.Formats;
-using DataFrame.Math.Data;
 using DataScienceStudio.Model;
 using Parquet.Data;
 using Windows.ApplicationModel.DataTransfer;
@@ -63,13 +61,31 @@ namespace Parquet.Windows.Universal.Core
       {
          using (Stream stream = uwpStream.AsStreamForRead())
          {
-            var readerOptions = new ReaderOptions()
+            using (var parquetReader = new ParquetReader(stream))
             {
-               Count = new ParquetUwpFunctions().SampleSize,
-               Offset = 0
-            };
+               DataField[] dataFields = parquetReader.Schema.GetDataFields();
+               var frame = new Frame(dataFields);
 
-            return Frame.Read.Parquet(stream, new ParquetOptions { TreatByteArrayAsString = true }, new ReaderOptions { Offset = 0, Count = 100 });
+               for (int i = 0; i < parquetReader.RowGroupCount; i++)
+               {
+                  // create row group reader
+                  using (ParquetRowGroupReader groupReader = parquetReader.OpenRowGroupReader(i))
+                  {
+                     // read all columns inside each row group (you have an option to read only
+                     // required columns if you need to.
+                     DataColumn[] columns = dataFields.Select(groupReader.ReadColumn).ToArray();
+                     for (int j = 0; j < columns.Length; j++)
+                     {
+                        Array data = columns[j].Data;
+                        if (j == 0)
+                           frame.RowCount += data.Length;
+
+                        frame.AppendToArray(j, data);
+                     }
+                  }
+               }
+               return frame;
+            }
          }
       }
    }

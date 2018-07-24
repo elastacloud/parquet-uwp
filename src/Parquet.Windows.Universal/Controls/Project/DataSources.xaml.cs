@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using DataFrame.Math.Data;
 using DataScienceStudio.Model;
 using Parquet.Windows.Universal.Core;
 using Windows.Foundation;

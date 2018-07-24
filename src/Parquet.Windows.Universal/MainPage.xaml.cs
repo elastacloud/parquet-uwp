@@ -53,7 +53,7 @@ namespace Parquet.Windows.Universal
          panel.Children.Add(text);
          panel.Children.Add(combo);
          dialog.Content = panel;
-         var outcome = await dialog.ShowAsync();
+         ContentDialogResult outcome = await dialog.ShowAsync();
          if (outcome != ContentDialogResult.Primary) return;
          samples.AddSampleSize((int) combo.SelectedValue);
       }

@@ -114,6 +114,7 @@
     <Compile Include="Controls\TabularDataGrid.xaml.cs">
       <DependentUpon>TabularDataGrid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Core\Frame.cs" />
     <Compile Include="Core\ParquetUniversal.cs" />
     <Compile Include="Core\ParquetUwpFunctions.cs" />
     <Compile Include="IParquetDisplay.cs" />
@@ -191,12 +192,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DataFrame.Formats">
-      <Version>1.0.2-alpha-20</Version>
-    </PackageReference>
-    <PackageReference Include="DataFrame.Math">
-      <Version>1.0.2-alpha-20</Version>
-    </PackageReference>
     <PackageReference Include="LogMagic">
       <Version>2.5.56</Version>
     </PackageReference>
@@ -217,6 +212,9 @@
     </PackageReference>
     <PackageReference Include="NetBox">
       <Version>1.4.24</Version>
+    </PackageReference>
+    <PackageReference Include="Parquet.Net">
+      <Version>3.0.2</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.SfBusyIndicator.UWP46">
       <Version>15.3.0.29</Version>

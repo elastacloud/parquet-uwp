@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using DataFrame.Math.Data;
 using DataScienceStudio.Model;
 using Parquet.Data;
 using Parquet.Windows.Universal.Model;
@@ -19,7 +18,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Frame = DataFrame.Math.Data.Frame;
+using Frame = Parquet.Windows.Universal.Core.Frame;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -41,7 +40,7 @@ namespace Parquet.Windows.Universal.Controls
          SfGrid.Columns.Clear();
 
          int i = 0;
-         foreach(Series s in df.Series)
+         foreach(DataField s in df.Fields)
          {
             SfGrid.Columns.Add(CreateSfColumn(s, i++));
          }
@@ -54,23 +53,19 @@ namespace Parquet.Windows.Universal.Controls
          SfGrid.Columns.RemoveAt(SfGrid.Columns.Count - 1);
       }
 
-      private GridColumn CreateSfColumn(Series s, int i)
+      private GridColumn CreateSfColumn(DataField s, int i)
       {
          GridColumn result;
 
-         if(s.DataType == typeof(int) ||
-            s.DataType == typeof(float) ||
-            s.DataType == typeof(double) ||
-            s.DataType == typeof(decimal))
+         if(isNumeric(s.DataType))
          {
             result = new GridNumericColumn();
          }
-         else if(s.DataType == typeof(DateTime) ||
-            s.DataType == typeof(DateTimeOffset))
+         else if(s.DataType == DataType.DateTimeOffset)
          {
             result = new GridDateTimeColumn();
          }
-         else if(s.DataType == typeof(bool))
+         else if(s.DataType == DataType.Boolean)
          {
             result = new GridCheckBoxColumn();
          }
@@ -94,6 +89,11 @@ namespace Parquet.Windows.Universal.Controls
          result.HeaderToolTipTemplate = _headerTooltipTemplate;
 
          return result;
+      }
+
+      private bool isNumeric(DataType dataType)
+      {
+         return dataType == DataType.Short || dataType == DataType.UnsignedShort || dataType == DataType.Int16 || dataType == DataType.UnsignedInt16 || dataType == DataType.Int32 || dataType == DataType.Int64 || dataType == DataType.Int96;
       }
    }
 }

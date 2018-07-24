@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using DataFrame.Math.Data;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -17,6 +16,8 @@ using Windows.UI.Xaml.Navigation;
 using DataScienceStudio.Model;
 using Syncfusion.UI.Xaml.Grid;
 using Syncfusion.Data;
+using Frame = Parquet.Windows.Universal.Core.Frame;
+using Parquet.Data;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -47,7 +48,7 @@ namespace DataScienceStudio.Controls.Grid
          SfGrid.Columns.Clear();
 
          int i = 0;
-         foreach (Series s in df.Series)
+         foreach (DataField s in df.Fields)
          {
             SfGrid.Columns.Add(CreateSfColumn(s, i++));
          }
@@ -62,25 +63,21 @@ namespace DataScienceStudio.Controls.Grid
          SfGrid.ColumnSizer = GridLengthUnitType.Auto;
       }
 
-      private GridColumn CreateSfColumn(Series s, int i)
+      private GridColumn CreateSfColumn(DataField s, int i)
       {
          GridColumn result;
 
-         if (s.DataType == typeof(int) ||
-            s.DataType == typeof(float) ||
-            s.DataType == typeof(double) ||
-            s.DataType == typeof(decimal))
+         if (isNumeric(s.DataType))
          {
             result = new GridNumericColumn();
             result.HeaderTemplate = this.Resources["headerTemplateNum"] as DataTemplate;
          }
-         else if (s.DataType == typeof(DateTime) ||
-            s.DataType == typeof(DateTimeOffset))
+         else if (s.DataType == DataType.DateTimeOffset)
          {
             result = new GridDateTimeColumn();
             result.HeaderTemplate = this.Resources["headerTemplateDate"] as DataTemplate;
          }
-         else if (s.DataType == typeof(bool))
+         else if (s.DataType == DataType.Boolean)
          {
             result = new GridCheckBoxColumn();
             result.HeaderTemplate = this.Resources["headerTemplateBool"] as DataTemplate;
@@ -103,6 +100,11 @@ namespace DataScienceStudio.Controls.Grid
          result.ShowHeaderToolTip = true;
 
          return result;
+      }
+
+      private bool isNumeric(DataType dataType)
+      {
+         return dataType == DataType.Short || dataType == DataType.UnsignedShort || dataType == DataType.Int16 || dataType == DataType.UnsignedInt16 || dataType == DataType.Int32 || dataType == DataType.Int64 || dataType == DataType.Int96;
       }
 
    }

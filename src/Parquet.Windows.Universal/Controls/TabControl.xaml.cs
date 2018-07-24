@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Parquet.Windows.Universal.Core;
 using Windows.ApplicationModel.DataTransfer;
-using Frame = DataFrame.Math.Data.Frame;
+using Frame = Parquet.Windows.Universal.Core.Frame;
 using DataScienceStudio.Model;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -42,7 +42,7 @@ namespace Parquet.Windows.Universal.Controls
          EmptyPanel.Visibility = Visibility.Collapsed;
 
          TabularDataGrid.DataFrame = f;
-         StatisticsViewControl.Display(f);
+         //StatisticsViewControl.Display(f);
       }
 
       private async void OpenFileButton_Click(object sender, RoutedEventArgs e)
